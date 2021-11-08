@@ -1,0 +1,24 @@
+{
+  "name": "week3",
+  "version": "1.0.0",
+  "description": "datavisualisatie gemaakt met d3",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Daan-Zwarthoed/frontend-data.git"
+  },
+  "author": "Daan Zwarthoed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Daan-Zwarthoed/frontend-data/issues"
+  },
+  "homepage": "https://github.com/Daan-Zwarthoed/frontend-data#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.14",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,17 @@
+svg {
+  fill: white;
+}
+
+path.sphere {
+  fill: transparent;
+  stroke: black;
+}
+
+path {
+  fill: white;
+  stroke: black;
+}
+
+path.country:hover {
+  fill: blue !important;
+}
