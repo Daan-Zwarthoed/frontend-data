@@ -15,3 +15,41 @@ path {
 path.country:hover {
   fill: blue !important;
 }
+
+text {
+  color: black;
+  fill: black;
+}
+
+.switch {
+  width: 40px;
+  height: 20px;
+  background-color: grey;
+  position: relative;
+}
+
+.tracksOrArtistsDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.switch > span {
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+
+.switch > input:checked + span {
+  left: 100% !important;
+  transform: translateX(-100%);
+  background-color: dodgerblue !important;
+}
+
+.switch > input {
+  opacity: 0;
+}

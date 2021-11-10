@@ -9,9 +9,19 @@
   <body>
     <svg width="1000" height="500"></svg>
     <p id="countryTextArea">land</p>
+    <div class="tracksOrArtistsDiv">
+      <p>Tracks</p>
+      <label class="switch">
+        <input id="tracksOrArtistsCheckbox" type="checkbox" />
+        <span></span>
+      </label>
+      <p>Artists</p>
+    </div>
+    <div class="slopeGraph"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.2"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script type="module" src="js/main.js"></script>
 </html>

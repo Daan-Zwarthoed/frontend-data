@@ -1,9 +1,23 @@
+async function cleanDataArray(array, countryOrWorld) {
+  const newArray = new Array();
+  console.log(newArray);
+
+  // console.log(array);
+  for (let i = 0; i < array.length; i++) {
+    newArray[i] = {};
+    newArray[i].country = countryOrWorld;
+    newArray[i].position = i + 1;
+    newArray[i].name = array[i].name;
+  }
+  return newArray;
+}
+
 // Fetched de populaire nummers van een land
 export function getPopularTracksCountry(country) {
   return axios
     .request(`http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`)
     .then(function (response) {
-      return response.data.tracks.track;
+      return cleanDataArray(response.data.tracks.track, "netherlands");
     })
     .catch(function (error) {
       console.error(error);
@@ -15,7 +29,7 @@ export function getPopularArtistsCountry(country) {
   return axios
     .request(`http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`)
     .then(function (response) {
-      return response.data.topartists.artist;
+      return cleanDataArray(response.data.topartists.artist, "netherlands");
     })
     .catch(function (error) {
       console.error(error);
@@ -32,7 +46,7 @@ export function getPopularTracksWorld() {
       tracks.sort((a, b) => {
         return b.listeners - a.listeners;
       });
-      return tracks.slice(0, 50);
+      return cleanDataArray(tracks.slice(0, 50), "world");
     })
     .catch(function (error) {
       console.error(error);
@@ -49,7 +63,7 @@ export function getPopularArtistsWorld() {
       artists.sort((a, b) => {
         return b.listeners - a.listeners;
       });
-      return artists.slice(0, 50);
+      return cleanDataArray(artists.slice(0, 50), "world");
     })
     .catch(function (error) {
       console.error(error);
