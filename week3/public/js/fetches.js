@@ -17,7 +17,7 @@ export function getPopularTracksCountry(country) {
   return axios
     .request(`http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`)
     .then(function (response) {
-      return cleanDataArray(response.data.tracks.track, "netherlands");
+      return cleanDataArray(response.data.tracks.track, country);
     })
     .catch(function (error) {
       console.error(error);
@@ -29,7 +29,7 @@ export function getPopularArtistsCountry(country) {
   return axios
     .request(`http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`)
     .then(function (response) {
-      return cleanDataArray(response.data.topartists.artist, "netherlands");
+      return cleanDataArray(response.data.topartists.artist, country);
     })
     .catch(function (error) {
       console.error(error);

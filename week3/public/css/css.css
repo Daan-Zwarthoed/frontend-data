@@ -28,7 +28,8 @@ text {
   position: relative;
 }
 
-.tracksOrArtistsDiv {
+.tracksOrArtistsDiv,
+.allOrLinksDiv {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -52,4 +53,12 @@ text {
 
 .switch > input {
   opacity: 0;
+}
+
+.tick {
+  opacity: 0;
+}
+
+text:hover {
+  cursor: default;
 }
