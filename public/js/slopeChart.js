@@ -3,7 +3,11 @@ let slopeChartSelf;
 export function makeSlopeChart(plotChartData, allOrLinks) {
   if (slopeChartSelf) slopeChartSelf.remove();
   slopeChartSelf = Plot.plot({
-    x: { type: "point", axis: "top", label: `${plotChartData[0].country} - world` },
+    x: {
+      type: "point",
+      axis: "top",
+      label: `${plotChartData[0].country} - world`,
+    },
     y: { axis: null, inset: -15, reverse: true },
     marks: [
       Plot.line(plotChartData, {
@@ -84,15 +88,33 @@ export function makeSlopeChart(plotChartData, allOrLinks) {
         if (testDing[index]) {
           if (testDing[index].getAttribute("d").split(".")[1]) {
             if (testDing[index].getAttribute("d").split(".")[1].split(",")[1]) {
-              if (testDing[index].getAttribute("d").split(".")[1].split(",").includes(c[indexNumber].y.baseVal[0].valueAsString.split(".")[0].toString())) {
-                testDing[index].id = c[indexNumber].innerHTML.replaceAll(" ", "").replaceAll("!", "").replaceAll(".", "").replaceAll(/[0-9]/g, "");
+              if (
+                testDing[index]
+                  .getAttribute("d")
+                  .split(".")[1]
+                  .split(",")
+                  .includes(
+                    c[indexNumber].y.baseVal[0].valueAsString
+                      .split(".")[0]
+                      .toString()
+                  )
+              ) {
+                testDing[index].id = c[indexNumber].innerHTML
+                  .replaceAll(" ", "")
+                  .replaceAll("!", "")
+                  .replaceAll(".", "")
+                  .replaceAll(/[0-9]/g, "");
               }
             }
           }
         }
       }
     }
-    return c[indexNumber].innerHTML.replaceAll(" ", "").replaceAll("!", "").replaceAll(".", "").replaceAll(/[0-9]/g, "");
+    return c[indexNumber].innerHTML
+      .replaceAll(" ", "")
+      .replaceAll("!", "")
+      .replaceAll(".", "")
+      .replaceAll(/[0-9]/g, "");
   });
 }
 
