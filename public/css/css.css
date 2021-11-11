@@ -2,6 +2,10 @@ svg {
   fill: white;
 }
 
+body {
+  background-color: rgb(156, 154, 154);
+}
+
 path.sphere {
   fill: transparent;
   stroke: black;

@@ -1,8 +1,5 @@
 async function cleanDataArray(array, countryOrWorld) {
-  const newArray = new Array();
-  console.log(newArray);
-
-  // console.log(array);
+  const newArray = [];
   for (let i = 0; i < array.length; i++) {
     newArray[i] = {};
     newArray[i].country = countryOrWorld;
@@ -12,10 +9,12 @@ async function cleanDataArray(array, countryOrWorld) {
   return newArray;
 }
 
-// Fetched de populaire nummers van een land
+// Fetches the most popular songs of a country
 export function getPopularTracksCountry(country) {
   return axios
-    .request(`http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`)
+    .request(
+      `http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`
+    )
     .then(function (response) {
       return cleanDataArray(response.data.tracks.track, country);
     })
@@ -24,11 +23,14 @@ export function getPopularTracksCountry(country) {
     });
 }
 
-// Fetched de populaire artiesten van een land
+// Fetches the most popular artists of a country
 export function getPopularArtistsCountry(country) {
   return axios
-    .request(`http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`)
+    .request(
+      `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`
+    )
     .then(function (response) {
+      console.log(response);
       return cleanDataArray(response.data.topartists.artist, country);
     })
     .catch(function (error) {
@@ -36,13 +38,15 @@ export function getPopularArtistsCountry(country) {
     });
 }
 
-// Fetched de populaire nummers van de wereld
+// Fetches the most popular songs of the world
 export function getPopularTracksWorld() {
   return axios
-    .request(`http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&limit=1000&api_key=424df88f98fb9a993131121f6457c381&format=json`)
+    .request(
+      `http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&limit=1000&api_key=424df88f98fb9a993131121f6457c381&format=json`
+    )
     .then(function (response) {
       let tracks = response.data.tracks.track;
-      // sorteert de nummers op hoeveelheid listeners
+      // sorts the songs on the amount of listeners
       tracks.sort((a, b) => {
         return b.listeners - a.listeners;
       });
@@ -53,13 +57,15 @@ export function getPopularTracksWorld() {
     });
 }
 
-// Fetched de populaire artiesten van de wereld
+// Fetches the most popular artists of the world
 export function getPopularArtistsWorld() {
   return axios
-    .request(`http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=1000&api_key=424df88f98fb9a993131121f6457c381&format=json`)
+    .request(
+      `http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=1000&api_key=424df88f98fb9a993131121f6457c381&format=json`
+    )
     .then(function (response) {
       let artists = response.data.artists.artist;
-      // sorteert de artiesten op hoeveelheid listeners
+      // sorts the songs on the amount of listeners
       artists.sort((a, b) => {
         return b.listeners - a.listeners;
       });
