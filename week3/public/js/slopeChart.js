@@ -84,11 +84,7 @@ export function makeSlopeChart(plotChartData, allOrLinks) {
         if (testDing[index]) {
           if (testDing[index].getAttribute("d").split(".")[1]) {
             if (testDing[index].getAttribute("d").split(".")[1].split(",")[1]) {
-              //   console.log(testDing[index].getAttribute("d").split(".")[1].split(","));
-              //   console.log(c[indexNumber].y.baseVal[0].valueAsString.split(".")[0]);
               if (testDing[index].getAttribute("d").split(".")[1].split(",").includes(c[indexNumber].y.baseVal[0].valueAsString.split(".")[0].toString())) {
-                // console.log(c[indexNumber].innerHTML.replace(" ", "").replace("!", ""));
-                // console.log(testDing[index]);
                 testDing[index].id = c[indexNumber].innerHTML.replaceAll(" ", "").replaceAll("!", "").replaceAll(".", "").replaceAll(/[0-9]/g, "");
               }
             }
@@ -96,7 +92,6 @@ export function makeSlopeChart(plotChartData, allOrLinks) {
         }
       }
     }
-    console.log(c[indexNumber].innerHTML.replaceAll(" ", "").replaceAll("!", "").replaceAll(".", "").replaceAll(/[0-9]/g, ""));
     return c[indexNumber].innerHTML.replaceAll(" ", "").replaceAll("!", "").replaceAll(".", "").replaceAll(/[0-9]/g, "");
   });
 }

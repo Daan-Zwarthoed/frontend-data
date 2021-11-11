@@ -57,12 +57,11 @@ allOrLinksCheckbox.addEventListener("click", function (event) {
 });
 
 slopeChartDiv._groups[0][0].addEventListener("mouseover", async function (event) {
-  d3.selectAll("text").style("fill", "black");
+  d3.selectAll(".slopeChart text").style("fill", "black");
   d3.selectAll(".slopeChart path").style("stroke", "black");
 
   if (event.target.id) {
-    console.log(event.target.id);
-    d3.selectAll(`text#${event.target.id}`).style("fill", "blue");
+    d3.selectAll(`.slopeChart text#${event.target.id}`).style("fill", "blue");
     d3.selectAll(`.slopeChart path#${event.target.id}`).style("stroke", "blue");
   }
 });
