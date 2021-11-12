@@ -30,7 +30,6 @@ export function getPopularArtistsCountry(country) {
       `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`
     )
     .then(function (response) {
-      console.log(response);
       return cleanDataArray(response.data.topartists.artist, country);
     })
     .catch(function (error) {

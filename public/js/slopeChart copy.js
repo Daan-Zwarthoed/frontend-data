@@ -65,6 +65,58 @@ export async function makeSlopeChart(plotChartData, allOrLinks) {
 
   // Add the slopechart to the DOM
   const slopeChartDiv = d3.select(".slopeChart");
+  console.log(slopeChartSelf);
+  let slopeChartSelf2 = slopeChartDiv
+    .append("svg")
+    .attr("class", "plot")
+    .attr("text-anchor", "middle")
+    .attr("width", "640")
+    .attr("height", "400")
+    .attr("viewBox", "0 0 640 400");
+
+  let title = slopeChartSelf2
+    .append("g")
+    .attr("transform", "translate(0,30)")
+    .attr("text-anchor", "middle");
+  title
+    .append("text")
+    .attr("transform", "translate(320,-30)")
+    .attr("dy", "1em")
+    .attr("text-anchor", "middle")
+    .attr("id", "netherlands-world")
+    .attr("style", "fill: black;")
+    .text("netherlands-world");
+
+  let test = slopeChartSelf2
+    .append("g")
+    .attr("stroke-width", "1.5")
+    .attr("stroke-miterlimit", "1");
+  let test2 = Plot.line(plotChartDataFiltered, {
+    x: "country",
+    y: "position",
+    z: "name",
+    strokeWidth: 1.5,
+  });
+
+  console.log(test2.channels);
+
+  lines
+    .selectAll("path")
+    .data(slopeChartSelf)
+    .enter()
+    .append("path")
+    .attr("x", (properties) => {
+      console.log(properties);
+      // return d3.map(plotChartDataFiltered, properties.country);
+    })
+    .attr("y", "position")
+    .attr("z", "name")
+    .attr("strokeWidth", "1.5");
+
+  let textLeft = slopeChartSelf2.append("g").attr("text-anchor", "end");
+
+  let textRight = slopeChartSelf2.append("g").attr("text-anchor", "start");
+
   slopeChartDiv._groups[0][0].appendChild(slopeChartSelf);
 
   // This adds the name of every datapoint to their element and connecting line
