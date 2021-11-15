@@ -5,7 +5,7 @@ import {
   getPopularTracksCountry,
 } from "./fetches.js";
 import { makeSlopeChart } from "./slopeChart.js";
-import { makeWorldMap } from "./worldMap.js";
+import { makeWorldMap, removeCountry } from "./worldMap.js";
 let country = "netherlands";
 let artistsOrTracks = "tracks";
 let allOrLinks = "all";
@@ -19,6 +19,9 @@ const tracksOrArtistsCheckbox = document.getElementById(
   "tracksOrArtistsCheckbox"
 );
 const allOrLinksCheckbox = document.getElementById("allOrLinksCheckbox");
+const removeCountriesCheckbox = document.getElementById(
+  "removeCountriesCheckbox"
+);
 const slopeChartDiv = d3.select(".slopeChart");
 
 // Gets all the data and adds it to their respective variable
@@ -60,6 +63,7 @@ function activateMakeSlopeChart() {
 // When you click on a country it changes the country and loads new data
 svg._groups[0][0].addEventListener("click", async function (event) {
   country = event.target.id;
+  if (removeCountriesCheckbox.checked) removeCountry(country);
   await getAllTheData();
   activateMakeSlopeChart();
 });

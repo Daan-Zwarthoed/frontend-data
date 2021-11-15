@@ -1,18 +1,13 @@
 const svg = d3.select("svg");
-
+const projection = d3.geoNaturalEarth1();
+const pathGenerator = d3.geoPath().projection(projection);
+let countries;
 // Makes the world map
 export function makeWorldMap() {
-  const projection = d3.geoNaturalEarth1();
-  const pathGenerator = d3.geoPath().projection(projection);
-  svg
-    .append("path")
-    .attr("class", "sphere")
-    .attr("d", pathGenerator({ type: "Sphere" }));
-
   d3.json(
     "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
   ).then((data) => {
-    const countries = topojson.feature(data, data.objects.countries);
+    countries = topojson.feature(data, data.objects.countries);
     svg
       .selectAll("path")
       .data(countries.features)
@@ -24,4 +19,23 @@ export function makeWorldMap() {
       })
       .attr("d", pathGenerator);
   });
+}
+
+export function removeCountry(chosenCountry) {
+  for (let i = 0; i < countries.features.length; i++) {
+    if (countries.features[i].properties.name === chosenCountry) {
+      countries.features.splice(i, 1);
+    }
+  }
+
+  svg
+    .selectAll("path")
+    .data(countries.features)
+    .attr("class", "country")
+    .attr("id", ({ properties }) => {
+      return properties.name;
+    })
+    .attr("d", pathGenerator);
+
+  svg.selectAll("path").data(countries.features).exit().remove();
 }
