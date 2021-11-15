@@ -66,7 +66,7 @@ export function getPopularTracksCountry(country) {
 
 // Fetches the most popular artists of a country
 export function getPopularArtistsCountry(country) {
-  country = mapCountryName(country);
+  country = correctCountryName(country);
   return axios
     .request(
       `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`
