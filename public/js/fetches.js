@@ -1,4 +1,4 @@
-async function cleanDataArray(array, countryOrWorld) {
+function cleanDataArray(array, countryOrWorld) {
   const newArray = [];
   for (let i = 0; i < array.length; i++) {
     newArray[i] = {};
@@ -9,8 +9,49 @@ async function cleanDataArray(array, countryOrWorld) {
   return newArray;
 }
 
+function mapCountryName(country) {
+  switch (country) {
+    case "United States of America":
+      return "United States";
+    case "Russia":
+      return "Russian Federation";
+    case "Syria":
+      return "Syrian Arab Republic";
+    case "Libya":
+      return "Libyan Arab Jamahiriya";
+    case "W. Sahara":
+      return "Western Sahara";
+    case "Eq. Guinea":
+      return "Equatorial Guinea";
+    case "Tanzania":
+      return "Tanzania, United Republic of";
+    case "Central African Rep.":
+      return "Central African Republic";
+    case "Czechia":
+      return "Czech Republic";
+    case "Bosnia and Herz.":
+      return "Bosnia and Herzegovina";
+    case "Dominican Rep.":
+      return "Dominican Republic";
+    case "Somaliland":
+      return "Somalia";
+    case "Vietnam":
+      return "Viet Nam";
+    case "Laos":
+      return "Lao People's Democratic Republic";
+    case "South Korea":
+      return "Korea, Republic of";
+    default:
+      return country;
+  }
+  // Cant find the right name for Kosovo, North Korea, Dem. Rep. Congo and Iran
+}
+
+// USING THE LAST.FM API
+
 // Fetches the most popular songs of a country
 export function getPopularTracksCountry(country) {
+  country = mapCountryName(country);
   return axios
     .request(
       `http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`
@@ -20,11 +61,13 @@ export function getPopularTracksCountry(country) {
     })
     .catch(function (error) {
       console.error(error);
+      return [];
     });
 }
 
 // Fetches the most popular artists of a country
 export function getPopularArtistsCountry(country) {
+  country = mapCountryName(country);
   return axios
     .request(
       `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`
@@ -34,6 +77,7 @@ export function getPopularArtistsCountry(country) {
     })
     .catch(function (error) {
       console.error(error);
+      return [];
     });
 }
 
@@ -53,6 +97,7 @@ export function getPopularTracksWorld() {
     })
     .catch(function (error) {
       console.error(error);
+      return [];
     });
 }
 
@@ -72,5 +117,6 @@ export function getPopularArtistsWorld() {
     })
     .catch(function (error) {
       console.error(error);
+      return [];
     });
 }

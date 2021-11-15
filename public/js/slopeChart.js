@@ -1,8 +1,11 @@
 // https://observablehq.com/@d3/slope-chart
 let slopeChartSelf;
-// This function makes the slope chart
-export async function makeSlopeChart(plotChartData, allOrLinks) {
-  const plotChartDataFiltered = [];
+let plotChartDataFiltered = [];
+const slopeChartDiv = d3.select(".slopeChart");
+
+// Filters the data out that doesnt exist twice
+function filterSlopeChartData(plotChartData) {
+  plotChartDataFiltered = [];
   plotChartData.forEach((dataElement) => {
     let count = 0;
     plotChartData.forEach((dataElement2) => {
@@ -10,11 +13,10 @@ export async function makeSlopeChart(plotChartData, allOrLinks) {
     });
     if (count > 1) plotChartDataFiltered.push(dataElement);
   });
+}
 
-  const dataTextElements =
-    allOrLinks === "links" ? plotChartDataFiltered : plotChartData;
-
-  if (slopeChartSelf) slopeChartSelf.remove();
+function plotSlopeChart(plotChartData, dataTextElements) {
+  // This returns an svg element that has all the data in it
   slopeChartSelf = Plot.plot({
     x: {
       type: "point",
@@ -42,7 +44,7 @@ export async function makeSlopeChart(plotChartData, allOrLinks) {
               return `${d.name} ${d.position}`;
           },
           textAnchor: "end",
-          dx: -3,
+          dx: -2,
         })
       ),
       // Makes the text on the right
@@ -57,19 +59,17 @@ export async function makeSlopeChart(plotChartData, allOrLinks) {
               return `${d.name} ${d.position}`;
           },
           textAnchor: "start",
-          dx: 3,
+          dx: 2,
         })
       ),
     ],
   });
+}
 
-  // Add the slopechart to the DOM
-  const slopeChartDiv = d3.select(".slopeChart");
-  slopeChartDiv._groups[0][0].appendChild(slopeChartSelf);
-
+function addIdPerElement() {
   // This adds the name of every datapoint to their element and connecting line
   let indexNumber = -1;
-  const slopeChartPaths = document.querySelectorAll(".slopeChart path");
+  const slopeChartPaths = d3.selectAll(".slopeChart path")._groups[0];
   d3.selectAll("text").attr("id", (_, _1, slopeChartTexts) => {
     indexNumber++;
     // Loops through every line and text to check if their coordinates match.
@@ -106,4 +106,29 @@ export async function makeSlopeChart(plotChartData, allOrLinks) {
       .replaceAll(".", "")
       .replaceAll(/[0-9]/g, "");
   });
+}
+
+// This function makes the slope chart
+export function makeSlopeChart(plotChartData, allOrLinks) {
+  filterSlopeChartData(plotChartData);
+
+  // The data that is used for the textelements
+  const dataTextElements =
+    allOrLinks === "links" ? plotChartDataFiltered : plotChartData;
+
+  if (slopeChartSelf) slopeChartSelf.remove();
+  slopeChartDiv.text("");
+
+  if (plotChartData[51]) {
+    plotSlopeChart(plotChartData, dataTextElements);
+    slopeChartDiv.node().appendChild(slopeChartSelf);
+  } else {
+    slopeChartDiv.text(
+      "This country either does not have any songs or does not exist in the API"
+    );
+  }
+
+  // Add the slopechart to the DOM
+
+  addIdPerElement();
 }

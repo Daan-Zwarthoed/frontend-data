@@ -25,13 +25,6 @@ text {
   fill: black;
 }
 
-.switch {
-  width: 40px;
-  height: 20px;
-  background-color: grey;
-  position: relative;
-}
-
 .tracksOrArtistsDiv,
 .allOrLinksDiv,
 .removeCountriesDiv {
@@ -39,6 +32,15 @@ text {
   flex-direction: row;
   align-items: center;
   margin: 0.5em;
+}
+
+.switch {
+  width: 40px;
+  height: 20px;
+  background-color: grey;
+  position: relative;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
 }
 
 .switch > span {
@@ -71,6 +73,7 @@ text:hover {
 
 svg.plot {
   height: 450px;
+  background-color: rgb(156, 154, 154);
 }
 
 .settings {
