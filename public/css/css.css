@@ -79,4 +79,9 @@ svg.plot {
 .settings {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.settings > p {
+  width: 80px;
 }
