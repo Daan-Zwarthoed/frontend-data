@@ -88,23 +88,18 @@ function addIdPerElement() {
               )
           ) {
             // If the coordinates match up then the name of the song or artist gets added to the lines id
-            slopeChartPaths[index].id = slopeChartTexts[indexNumber].innerHTML
-              .replaceAll(" ", "")
-              .replaceAll("?", "")
-              .replaceAll("!", "")
-              .replaceAll(".", "")
-              .replaceAll(/[0-9]/g, "");
+            slopeChartPaths[index].id = slopeChartTexts[
+              indexNumber
+            ].innerHTML.replaceAll(/[0-9 ? ! . ' ; & ( )]/g, "");
           }
         }
       }
     }
     // Add name of the song or artist to the id of the text
-    return slopeChartTexts[indexNumber].innerHTML
-      .replaceAll(" ", "")
-      .replaceAll("?", "")
-      .replaceAll("!", "")
-      .replaceAll(".", "")
-      .replaceAll(/[0-9]/g, "");
+    return slopeChartTexts[indexNumber].innerHTML.replaceAll(
+      /[0-9 ? ! . ' ; & ( )]/g,
+      ""
+    );
   });
 }
 

@@ -83,5 +83,6 @@ svg.plot {
 }
 
 .settings > p {
-  width: 80px;
+  width: 90px;
+  padding-left: 0.5em;
 }
