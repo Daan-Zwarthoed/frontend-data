@@ -2,7 +2,9 @@
 
 ### Concept
 
-My concept for week 1 is making a data cleaner. For this I made a small form in which you can put your data in a textarea and then enter which cleanings you do or don't want. When you submit the form you get the cleaned data and a table in which you can change the keys of all the questions. Also you can look at the answers and how many times they were answered.
+My concept for this project is making a data visualisation in which you can compare the most popular artists and tracks of every country with how popular those aritsts and tracks are in the entire world. You can chose a country to compare on a map and then you can choose tracks or artists, to show just the tracks and artists that exist in the top 50 of the world and to remove or not remove a country after you clicked on it.
+
+![concept](https://github.com/Daan-Zwarthoed/frontend-data/blob/main/images/conceptImage.jpg)
 
 ### Installation
 
