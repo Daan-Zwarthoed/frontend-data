@@ -9,7 +9,7 @@ function cleanDataArray(array, countryOrWorld) {
   return newArray;
 }
 
-function mapCountryName(country) {
+function correctCountryName(country) {
   switch (country) {
     case "United States of America":
       return "United States";
@@ -48,10 +48,9 @@ function mapCountryName(country) {
 }
 
 // USING THE LAST.FM API
-
 // Fetches the most popular songs of a country
 export function getPopularTracksCountry(country) {
-  country = mapCountryName(country);
+  country = correctCountryName(country);
   return axios
     .request(
       `http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${country}&limit=50&api_key=424df88f98fb9a993131121f6457c381&format=json`
