@@ -11,7 +11,7 @@ function filterSlopeChartData(plotChartData) {
     plotChartData.forEach((dataElement2) => {
       if (dataElement2.name === dataElement.name) count++;
     });
-    if (count > 1) plotChartDataFiltered.push(dataElement);
+    if (count === 2) plotChartDataFiltered.push(dataElement);
   });
 }
 
@@ -122,8 +122,6 @@ export function makeSlopeChart(plotChartData, allOrLinks) {
       "This country either does not have any songs or does not exist in the API"
     );
   }
-
-  // Add the slopechart to the DOM
 
   addIdPerElement();
 }
